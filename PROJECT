@@ -1,0 +1,14 @@
+domain: openshift.io
+layout: go.kubebuilder.io/v3
+plugins:
+  manifests.sdk.operatorframework.io/v2: {}
+  scorecard.sdk.operatorframework.io/v2: {}
+projectName: route-to-ingress-operator
+repo: github.com/m-yosefpor/route-to-ingress-operator
+resources:
+- controller: true
+  domain: openshift.io
+  group: route
+  kind: Route
+  version: v1
+version: "3"
