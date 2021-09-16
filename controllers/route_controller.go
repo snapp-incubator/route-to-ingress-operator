@@ -158,7 +158,11 @@ func (r *RouteReconciler) ingressForRoute(m *routev1.Route) (*netv1.Ingress, err
 		},
 	}
 	// Set Route instance as the owner and controller
-	ctrl.SetControllerReference(m, ing, r.Scheme)
+	err := ctrl.SetControllerReference(m, ing, r.Scheme)
+	if err != nil {
+		return nil, err
+	}
+
 	return ing, nil
 }
 
