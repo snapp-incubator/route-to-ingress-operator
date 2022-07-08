@@ -31,6 +31,9 @@ spec:
         - --leader-elect
         image: controller:latest
         name: manager
+        env:
+        - name: INGRESS_CLASS
+          value: "ambassador"
         securityContext:
           allowPrivilegeEscalation: false
         livenessProbe:

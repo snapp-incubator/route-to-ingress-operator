@@ -19,6 +19,7 @@ package controllers
 import (
 	"context"
 	"fmt"
+	"os"
 
 	"github.com/go-logr/logr"
 	routev1 "github.com/openshift/api/route/v1"
@@ -38,6 +39,8 @@ type RouteReconciler struct {
 	Log    logr.Logger
 	Scheme *runtime.Scheme
 }
+
+var ingressClass = os.Getenv("INGRESS_CLASS")
 
 //+kubebuilder:rbac:groups=route.openshift.io,resources=routes,verbs=get;list;watch
 //+kubebuilder:rbac:groups=route.openshift.io,resources=routes/status,verbs=get;update;patch
@@ -138,6 +141,7 @@ func (r *RouteReconciler) ingressForRoute(m *routev1.Route) (*netv1.Ingress, err
 		},
 
 		Spec: netv1.IngressSpec{
+			IngressClassName: &ingressClass,
 			Rules: []netv1.IngressRule{{
 				Host: m.Spec.Host,
 				IngressRuleValue: netv1.IngressRuleValue{
