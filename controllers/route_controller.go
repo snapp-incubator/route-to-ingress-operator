@@ -112,7 +112,7 @@ func (r *RouteReconciler) ingressForRoute(m *routev1.Route) (*netv1.Ingress, err
 	if m.Spec.Port == nil {
 		return nil, fmt.Errorf("nil port")
 	}
-	var pathType netv1.PathType = "Exact"
+	var pathType netv1.PathType = "Prefix"
 	var port netv1.ServiceBackendPort
 	switch m.Spec.Port.TargetPort.Type {
 	case intstr.String:

@@ -32,8 +32,9 @@ A controller to create corresponding `ingress.networking.k8s.io/v1` resources fo
 - [x] string port
 - [x] path
 - [ ] nil port
-- [ ] weight
-- [ ] termination
+- [ ] weight + alternateBackends
+- [ ] tls (termination)
+- [ ] subdomain
 
 ## Security
 
